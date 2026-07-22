@@ -50,7 +50,7 @@
                                                 <!--//TODO: Tambien se cambia el atributo for para hacer referencia al input correspondiente-->
                                                 <label for="usu_correo" class="form-label">Correo Electrónico</label>
                                                 <input type="email" class="form-control" id="usu_correo" name="usu_correo" placeholder="Ingrese Correo Electrónico" required="">  
-                                                //TODO: una vez que se agrega el script del validator abajo, se cambia el div por el siguiente: "validation-error text-danger" a cada uno de los campos del input
+                                                <!--//TODO: una vez que se agrega el script del validator abajo, se cambia el div por el siguiente: "validation-error text-danger" a cada uno de los campos del input-->
                                                 <div class="validation-error text-danger"></div>      
                                             </div>
                     
@@ -245,10 +245,10 @@
         <script src="../../assets/js/pace.min.js"></script>
 
         <!-- validation init -->
-         //TODO: Todavia no se utiliza el validation.js
+        <!-- //TODO: Todavia no se utiliza el validation.js-->
         <!-- <script src="../../assets/js/validation.init.js"></script> -->
 
-        //TODO: Se agrega el siguiente script para validar los campos en el HTML
+        <!--//TODO: Se agrega el siguiente script para validar los campos en el HTML-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.6.0/validator.min.js"></script>
         <!--//TODO: se carga el archivo registro.js-->
         <script type="text/javascript" src="registro.js"></script>
