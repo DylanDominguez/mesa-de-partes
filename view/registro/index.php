@@ -41,37 +41,35 @@
                                             <h5 class="mb-0">Registrar Cuenta</h5>
                                             <p class="text-muted mt-2">Registre sus datos en el portal.</p>
                                         </div>
-                                        <form class="needs-validation custom-form mt-4 pt-2" novalidate="" action="index.html">
+
+                                        <!--//TODO: Se coloca el id mnt_form al formulario-->
+                                        <form id="mnt_form" class="needs-validation custom-form mt-4 pt-2" novalidate="" action="index.html">
+
+                                            <!--//TODO: a cada input se cambia su id, de preferencia se coloca el nombre del campo correspondiente en la BD y se le agrega un atributo name, ya que de alli va a recibir la informacion en PHP-->
                                             <div class="mb-3">
-                                                <label for="useremail" class="form-label">Correo Electrónico</label>
-                                                <input type="email" class="form-control" id="useremail" placeholder="Ingrese Correo Electrónico" required="">  
-                                                <div class="invalid-feedback">
-                                                    Ingrese Correo Electrónico
-                                                </div>      
+                                                <!--//TODO: Tambien se cambia el atributo for para hacer referencia al input correspondiente-->
+                                                <label for="usu_correo" class="form-label">Correo Electrónico</label>
+                                                <input type="email" class="form-control" id="usu_correo" name="usu_correo" placeholder="Ingrese Correo Electrónico" required="">  
+                                                //TODO: una vez que se agrega el script del validator abajo, se cambia el div por el siguiente: "validation-error text-danger" a cada uno de los campos del input
+                                                <div class="validation-error text-danger"></div>      
                                             </div>
                     
                                             <div class="mb-3">
-                                                <label for="username" class="form-label">Nombres y Apellidos</label>
-                                                <input type="text" class="form-control" id="username" placeholder="Ingrese Nombres y Apellidos" required="">
-                                                <div class="invalid-feedback">
-                                                    Ingrese Nombres y Apellidos
-                                                </div>  
+                                                <label for="usu_nomape" class="form-label">Nombres y Apellidos</label>
+                                                <input type="text" class="form-control" id="usu_nomape" name="usu_nomape" placeholder="Ingrese Nombres y Apellidos" required="">
+                                                <div class="validation-error text-danger"></div>
                                             </div>
                     
                                             <div class="mb-3">
-                                                <label for="userpassword" class="form-label">Contraseña</label>
-                                                <input type="password" class="form-control" id="userpassword" placeholder="Ingrese una Contraseña" required="">
-                                                <div class="invalid-feedback">
-                                                    Ingrese una Contraseña
-                                                </div>       
+                                                <label for="usu_pass" class="form-label">Contraseña</label>
+                                                <input type="password" class="form-control" id="usu_pass" name="usu_pass" placeholder="Ingrese una Contraseña" required="">
+                                                <div class="validation-error text-danger"></div>
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="userpassword" class="form-label">Confirmar Contraseña</label>
-                                                <input type="password" class="form-control" id="userpassword" placeholder="Confirmar Contraseña" required="">
-                                                <div class="invalid-feedback">
-                                                    Confirmar Contraseña
-                                                </div>       
+                                                <label for="usu_pass_confir" class="form-label">Confirmar Contraseña</label>
+                                                <input type="password" class="form-control" id="usu_pass_confir" name="usu_pass_confir" placeholder="Confirmar Contraseña" required="">
+                                                <div class="validation-error text-danger"></div>
                                             </div>
 
                                             <div class="mb-4">
@@ -247,7 +245,12 @@
         <script src="../../assets/js/pace.min.js"></script>
 
         <!-- validation init -->
-        <script src="../../assets/js/validation.init.js"></script>
+         //TODO: Todavia no se utiliza el validation.js
+        <!-- <script src="../../assets/js/validation.init.js"></script> -->
+
+        //TODO: Se agrega el siguiente script para validar los campos en el HTML
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.6.0/validator.min.js"></script>
+        <!--//TODO: se carga el archivo registro.js-->
         <script type="text/javascript" src="registro.js"></script>
 
     </body>

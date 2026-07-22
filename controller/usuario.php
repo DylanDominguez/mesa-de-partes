@@ -1,7 +1,7 @@
 <?php
     //TODO: Incluye el archivo de configuracion de la conexion de la BD y la clase Usuario
-    require_once("./config/conexion.php");
-    require_once("./model/Usuario.php");
+    require_once("../config/conexion.php");
+    require_once("../model/Usuario.php");
 
     //TODO: Crea una instancia de la clase Usuario
     $usuario = new Usuario();

@@ -10,7 +10,7 @@
         protected function conexion(){
             try {
                 //TODO: Intenta establecer la conexion utilizando PDO
-                $conectar = $this->dbh = new PDO("mysql:local=localhost;dbname=mesadepartes","root","");
+                $conectar = $this->dbh = new PDO("mysql:local=localhost;port=3307;dbname=mesadepartes","root","");
                 return $conectar;
             } catch (Exception $e) {
                 //TODO: En caso de Error imprime un mensaje y termina el script
