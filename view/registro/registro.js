@@ -21,6 +21,7 @@ function isFormValid() {
 }
 
 function validateEmail() {
+    //TODO: Validar el input de correo electronico
     var email = $("#usu_correo").val();
     var isValid = validator.isEmail(email);
     //TODO: Muestra un mensaje de error si la validacion no es exitosa
@@ -30,6 +31,7 @@ function validateEmail() {
 }
 
 function validateText(fieldId) {
+    //TODO: Validar cualquier input pero como parametro se coloca el input de nombres y apellidos
     var value = $("#" + fieldId).val();
     var isValid = validator.isLength(value,{min:1});
     displayErrorMessage("#" + fieldId, isValid, "Este campo es obligatorio");
@@ -38,6 +40,7 @@ function validateText(fieldId) {
 }
 
 function validatePassword() {
+    //TODO: Validar el input de contraseña
     var password = $("#usu_pass").val();
     var isValid = validator.isLength(password,{min:8});
     displayErrorMessage("#usu_pass", isValid, "La contraseña debe tener al menos 8 caracteres");
@@ -46,6 +49,7 @@ function validatePassword() {
 }
 
 function validatePasswordMatch() {
+    //TODO: Validar si el input de confirmar la contraseña coincide con la contraseña ingresada
     var password = $("#usu_pass").val();
     var confirmPassword = $("#usu_pass_confir").val();
     var isValid = validator.equals(password, confirmPassword);
@@ -93,7 +97,22 @@ function registrar() {
 
         //TODO: Se ejecuta cuando el servidor responde correctamente
         success: function (datos){
-            console.log("Guardado " + datos);
+            if (datos == 1) {
+                Swal.fire({
+                    title: "Registro",
+                    text: "Se registró correctamente.",
+                    icon: "success",
+                    confirmButtonColor: "#5156be",
+                });
+            }else if (datos == 0) {
+                Swal.fire({
+                    title: "Registro",
+                    text: "El correro electrónico ya existe.",
+                    icon: "error",
+                    confirmButtonColor: "#5156be",
+                });
+            }
+            console.log(datos);
         },
     });
 }

@@ -1,4 +1,3 @@
-//TODO: Creacion de la base de datos en phpMyAdmin
 <?php
     //TODO: Creacion de la clase Usuario que hereda de Conectar
     class Usuario extends Conectar{
@@ -18,6 +17,22 @@
 
             //TODO: Ejecutar la consulta SQL
             $sql->execute();
+        }
+
+        public function get_usuario_correo($usu_correo){
+            //TODO: devuelve la conexion a la BD utilizando la clase padre
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql = "
+            SELECT * FROM `tm_usuario` 
+            WHERE usu_correo = ?
+            ";
+            $sql = $conectar->prepare($sql);
+            $sql->bindValue(1, $usu_correo);
+
+            //TODO: Ejecutar la consulta SQL
+            $sql->execute();
+            return $sql->fetchAll();
         }
     }
 ?>
