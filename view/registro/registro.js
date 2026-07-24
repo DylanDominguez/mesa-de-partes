@@ -1,3 +1,6 @@
+//TODO: Se declara la variable global timerInterval para utilizarla en el Timer cuando se registre correctamente un usuario
+var timerInterval;
+
 //TODO: Funcion principal que inicializa los eventos del formulario
 function init() {
     //TODO: Escucha el evento "submit" del formulario
@@ -82,27 +85,44 @@ function registrar() {
     $.ajax({
         //TODO: Ruta del controlador y operacion a ejecutar
         url: "../../controller/usuario.php?op=registrar",
-
-        //TODO: Metodo HTTP utilizado para enviar los datos
         type: "POST",
-
-        //TODO: Datos del formulario que se enviaran al servidor
         data: formData,
-
-        //TODO: Permite enviar FormData sin modificar el tipo de contenido
         contentType: false,
-
-        //TODO: Evita que jQuery procese automaticamente los datos
         processData: false,
 
         //TODO: Se ejecuta cuando el servidor responde correctamente
         success: function (datos){
+            //TODO: Muestra las ventanas emergentes cuando se registra una cuenta
             if (datos == 1) {
                 Swal.fire({
                     title: "Registro",
-                    text: "Se registró correctamente.",
+                    text: "Se registró correctamente. Por favor iniciar sesión. Redireccionando en 10 segundos",
                     icon: "success",
                     confirmButtonColor: "#5156be",
+                    timer: 5000,
+                    timerProgressBar: true,
+                    //TODO: Salta un temporizador despues del registro exitoso
+                    didOpen: function() {
+                        Swal.showLoading();
+
+                        timerInterval = setInterval(function () {
+                            var content = Swal.getHtmlContainer();
+                            if (!content) return;
+                            var countdownElement = content.querySelector("b");
+                            if (countdownElement) {
+                                countdownElement.textContent = (Swal.getTimerLeft() / 1000).toFixed(0);
+                            }
+                        }, 100);
+                    },
+                    //TODO: Al terminar el temporizador nos regirige al login
+                    didClose: function() {
+                        clearInterval(timerInterval);
+                        window.location.href = "../../index.php";
+                    },
+                }).then(function(result){
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                       /* console.log(""); */ 
+                    }
                 });
             }else if (datos == 0) {
                 Swal.fire({
@@ -112,7 +132,7 @@ function registrar() {
                     confirmButtonColor: "#5156be",
                 });
             }
-            console.log(datos);
+            /* console.log(datos); */
         },
     });
 }
