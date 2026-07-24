@@ -1,0 +1,7 @@
+//TODO: Para que al usuario le llegue un mensaje al correo en donde el se registró
+
+-Tener instalado Composer
+-Se crea la carpeta "include"
+-Entrar en la terminal de Visual Studio y estar dentro de la carpeta "include" 
+-comando: composer require phpmailer/phpmailer
+-Luego crear el archivo Email.php en la carpeta model
