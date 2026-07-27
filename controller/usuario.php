@@ -19,9 +19,9 @@
 
             if (is_array($datos) == true and count($datos) == 0) {
                 //TODO: Llama al metodo registrar_usuario de la instancia $usuario con los datos del formulario
-                $usuario->registrar_usuario($_POST["usu_nomape"], $_POST["usu_correo"], $_POST["usu_pass"]);
+                $datos1 = $usuario->registrar_usuario($_POST["usu_nomape"], $_POST["usu_correo"], $_POST["usu_pass"]);
                 //TODO: Llama al metodo registrar de la instancia $email para que el mensaje llegue al correo 
-                $email->registrar($_POST["usu_correo"]);
+                $email->registrar($datos1[0]["usu_id"]);
                 echo "1";
             }else{
                 echo "0";
