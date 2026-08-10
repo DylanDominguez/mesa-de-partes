@@ -28,5 +28,8 @@
             }
             break;
 
+        case 'activar':
+            $usuario -> activar_usuario($_POST["usu_id"]);
+            break;
     }
 ?>

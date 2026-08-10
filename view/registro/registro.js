@@ -96,7 +96,7 @@ function registrar() {
             if (datos == 1) {
                 Swal.fire({
                     title: "Registro",
-                    text: "Se registró correctamente. Por favor iniciar sesión. Redireccionando en 10 segundos",
+                    text: "Se registró correctamente. Por favor iniciar sesión. Redireccionando en 5 segundos",
                     icon: "success",
                     confirmButtonColor: "#5156be",
                     timer: 5000,

@@ -1,8 +1,14 @@
 <?php
     //TODO: Creacion de la clase Usuario que hereda de Conectar
     class Usuario extends Conectar{
+        private $key = "MesaDePartesDylanDev";
+        private $cipher = "aes-256-cbc";
         //TODO: funcion para registrar un nuevo usuario en la BD
         public function registrar_usuario($usu_nomape, $usu_correo, $usu_pass){
+            $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($this->cipher));
+            $cifrado = openssl_encrypt($usu_pass, $this->cipher, $this->key, OPENSSL_RAW_DATA, $iv);
+            $textoCifrado = base64_encode($iv . $cifrado);
+
             //TODO: devuelve la conexion a la BD utilizando la clase padre
             $conectar = parent::conexion();
             parent::set_names();
@@ -13,7 +19,7 @@
             $sql = $conectar->prepare($sql);
             $sql->bindValue(1, $usu_nomape);
             $sql->bindValue(2, $usu_correo);
-            $sql->bindValue(3, $usu_pass);
+            $sql->bindValue(3, $textoCifrado);
 
             //TODO: Ejecutar la consulta SQL
             $sql->execute();
@@ -55,6 +61,28 @@
             //TODO: Ejecutar la consulta SQL
             $sql->execute();
             return $sql->fetchAll();
+        }
+
+        public function activar_usuario($usu_id){
+            $iv_dec = substr(base64_decode($usu_id), 0, openssl_cipher_iv_length($this->cipher));
+            $cifradoSinIV = substr(base64_decode($usu_id), openssl_cipher_iv_length($this->cipher));
+            $textoDecifrado = openssl_decrypt($cifradoSinIV, $this->cipher, $this->key, OPENSSL_RAW_DATA, $iv_dec);
+            //TODO: devuelve la conexion a la BD utilizando la clase padre
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql = "
+            UPDATE `tm_usuario`
+            SET 
+                est=1,
+                fech_acti = NOW()
+            WHERE 
+                usu_id = ?
+            ";
+            $sql = $conectar->prepare($sql);
+            $sql->bindValue(1, $textoDecifrado);
+
+            //TODO: Ejecutar la consulta SQL
+            $sql->execute();
         }
     }
 ?>
